@@ -1,19 +1,17 @@
+
+
 import React, { useState, useEffect } from 'react';
 import Item from './Item';
-import axios from 'axios';
+import { getItems } from '../api/api';
 
 const Listado = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => {
-        setItems(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
+    getItems().then((data) => setItems(data));
   }, []);
+
+
 
   return (
     <div>

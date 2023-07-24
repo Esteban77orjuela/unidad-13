@@ -1,13 +1,17 @@
+
+
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    localStorage.setItem('username', username);
+    history.push('/listado');
   };
 
   return (
@@ -31,3 +35,4 @@ const Login = () => {
 };
 
 export default Login;
+

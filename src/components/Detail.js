@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getItemById } from '../api/api';
 
-const Detail = ({ item }) => {
+const Detail = () => {
+  const { id } = useParams();
+  const [item, setItem] = useState(null);
+
+  useEffect(() => {
+    getItemById(id).then((data) => setItem(data));
+  }, [id]);
+
+  if (!item) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <h2>Detalles del Item</h2>
